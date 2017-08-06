@@ -51,6 +51,7 @@
 
 @interface UIKeyboardEmojiCategory : NSObject
 @property NSInteger categoryType; // iOS 6+
+@property NSInteger lastViewedPage;
 @property(getter = displaySymbol, readonly) NSString *displaySymbol; // iOS 6+
 @property(getter = displayName, readonly) NSString *displayName; // iOS 7
 @property(retain) NSMutableArray <UIKeyboardEmoji *> *emoji;
@@ -218,12 +219,14 @@
 @end
 
 @interface UIKeyboardEmojiGraphics : NSObject
++ (instancetype)sharedInstance;
 + (CGFloat)emojiPageControlYOffset:(BOOL)portrait;
 + (CGSize)emojiSize:(BOOL)portrait;
 + (CGPoint)margin:(BOOL)portrait;
 + (CGPoint)padding:(BOOL)portrait;
 + (NSInteger)rowCount:(BOOL)portrait;
 + (NSInteger)colCount:(BOOL)portrait;
++ (BOOL)isLandscape;
 + (NSString *)emojiCategoryImagePath:(UIKeyboardEmojiCategory *)category; // iOS 8.3-10.1
 + (NSString *)emojiCategoryImagePath:(UIKeyboardEmojiCategory *)category forRenderConfig:(UIKBRenderConfig *)renderConfig; // iOS 10.2+
 + (UIImage *)imageWithRect:(CGRect)rect name:(NSString *)name pressed:(BOOL)pressed;
@@ -347,6 +350,7 @@
 - (UIKeyboardEmoji *)emojiWithString:(NSString *)emojiString;
 - (void)emojiSelected:(UIKeyboardEmoji *)emoji;
 - (void)emojiUsed:(UIKeyboardEmoji *)emoji;
+- (CGRect)categoryFrame;
 @end
 
 @interface UIKeyboardEmojiCategoryController : NSObject // iOS 5

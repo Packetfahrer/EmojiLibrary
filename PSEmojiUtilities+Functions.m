@@ -33,19 +33,18 @@
 }
 
 + (BOOL)emojiString:(NSString *)emojiString inGroup:(NSArray <NSString *> *)group {
-    if (!group || group.count == 0)
-        return NO;
-    NSUInteger index = [group indexOfObject:emojiString inSortedRange:NSMakeRange(0, group.count) options:NSBinarySearchingFirstEqual
-                            usingComparator :^(id str1, id str2) {
-        /*if (stringEqual(str1, str2))
-                return (NSComparisonResult)NSOrderedSame;*/
-        UChar32 f1 = [self firstLongCharacter:(NSString *)str1];
-        UChar32 f2 = [self firstLongCharacter:(NSString *)str2];
-        if (f1 == f2)
-            return (NSComparisonResult)NSOrderedSame;
-        return f1 > f2 ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending;
-    }];
-    return index != NSNotFound;
+    if (group.count) {
+        NSUInteger index = [group indexOfObject:emojiString inSortedRange:NSMakeRange(0, group.count) options:NSBinarySearchingFirstEqual
+                                usingComparator :^(id str1, id str2) {
+            UChar32 f1 = [self firstLongCharacter:(NSString *)str1];
+            UChar32 f2 = [self firstLongCharacter:(NSString *)str2];
+            if (f1 == f2)
+                return (NSComparisonResult)NSOrderedSame;
+            return f1 > f2 ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending;
+        }];
+        return index != NSNotFound;
+    }
+    return NO;
 }
 
 + (NSString *)emojiBaseFirstCharacterString:(NSString *)emojiString {
