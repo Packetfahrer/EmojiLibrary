@@ -6,7 +6,7 @@ Global headers, functions and library used by PoomSmart's Emoji Tweaks.
 Emoji Font for EmojiPort
 =============
 
-For those who don't want to use BytaFont, fonts file are provided here for manual installation.
+For those who don't want to use BytaFont, (modified) fonts file are provided here for manual installation.
 
 Font Download
 =============
@@ -22,7 +22,7 @@ Font Installation
 
 It is recommended to backup the original font files first.
 
-* For iOS 6.0 - 8.1 users, place downloaded files at /System/Library/Fonts/Cache on your device
+* For iOS 5.1 - 8.1 users, place downloaded files at /System/Library/Fonts/Cache on your device
 * For iOS 8.2 - 9.x users, place downloaded files at /System/Library/Fonts/Core on your device
 
 Important Note
