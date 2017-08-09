@@ -8,6 +8,8 @@
 #define MALE @"♂"
 #define ZWJ2640 @"‍♀"
 #define ZWJ2642 @"‍♂"
+#define ZWJ2640FE0F @"‍♀️"
+#define ZWJ2642FE0F @"‍♂️"
 
 #define CATEGORIES_COUNT 9
 
@@ -19,8 +21,8 @@ typedef NS_ENUM (NSUInteger, PSEmojiType) {
     PSEmojiTypeProfession = 8, // 10.2+
     PSEmojiTypeGender = 4, // 10.0+
     PSEmojiTypeSkin = 2,
-    PSEmojiTypeRegular = 1,
-    PSEmojiTypeDingbat = 0
+    PSEmojiTypeDingbat = 1,
+    PSEmojiTypeRegular = 0
 };
 
 @interface PSEmojiUtilities : NSObject
@@ -63,6 +65,9 @@ typedef NS_ENUM (NSUInteger, PSEmojiType) {
 + (NSString *)skinToneVariant:(NSString *)emojiString baseFirst:(NSString *)baseFirst base:(NSString *)base skin:(NSString *)skin;
 + (NSString *)skinToneVariant:(NSString *)emojiString skin:(NSString *)skin;
 + (NSString *)overrideKBTreeEmoji:(NSString *)emojiString overrideNewVariant:(BOOL)overrideNewVariant;
+
++ (UIKeyboardEmojiCollectionViewCell *)collectionView:(UICollectionView *)collectionView_ cellForItemAtIndexPath:(NSIndexPath *)indexPath inputView:(UIKeyboardEmojiCollectionInputView *)inputView;
++ (UIKeyboardEmojiCategory *)prepopulatedCategory;
 
 + (BOOL)genderEmojiBaseStringNeedVariantSelector:(NSString *)emojiString;
 + (BOOL)emojiString:(NSString *)emojiString inGroup:(NSArray <NSString *> *)group;
