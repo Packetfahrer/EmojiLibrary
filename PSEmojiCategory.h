@@ -20,7 +20,8 @@
    PSEmojiCategoryCelebration = 4,
    PSEmojiCategoryActivity = 5,
    PSEmojiCategoryTravelAndPlaces = 6,
-   PSEmojiCategoryObjectsAndSymbols = 7
+   PSEmojiCategoryObjectsAndSymbols = 7,
+   PSEmojiCategoryPrepopulated = 8
 
  */
 
@@ -35,7 +36,8 @@
    PSEmojiCategoryActivity = 5,
    PSEmojiCategoryTravelAndPlaces = 6,
    PSEmojiCategoryFlags = 7,
-   PSEmojiCategoryObjectsAndSymbols = 8
+   PSEmojiCategoryObjectsAndSymbols = 8,
+   PSEmojiCategoryPrepopulated = 9
  */
 
 // Compatibility
@@ -48,7 +50,8 @@ typedef NS_ENUM (NSInteger, IDXPSEmojiCategory) {
     IDXPSEmojiCategoryTravelAndPlaces = 5,
     IDXPSEmojiCategoryObjects = 6,
     IDXPSEmojiCategorySymbols = 7,
-    IDXPSEmojiCategoryFlags = 8
+    IDXPSEmojiCategoryFlags = 8,
+    IDXPSEmojiCategoryPrepopulated = 9
 };
 
 // iOS 9.1+
@@ -62,6 +65,7 @@ typedef NS_ENUM (NSInteger, PSEmojiCategory) {
     PSEmojiCategoryTravelAndPlaces = 6,
     PSEmojiCategoryFlags = 7,
     PSEmojiCategoryObjectsAndSymbols = 8,
+    PSEmojiCategoryPrepopulated = 9,
     PSEmojiCategoryObjects = 10,
     PSEmojiCategorySymbols = 11
 };
