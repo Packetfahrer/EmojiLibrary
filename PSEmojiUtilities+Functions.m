@@ -23,7 +23,7 @@
 }
 
 + (BOOL)sectionHasSkin:(NSInteger)section {
-    return section <= 1 || ((isiOS91Up && section == 5) || (!isiOS91Up && section == 4));
+    return section <= PSEmojiCategoryPeople || ((isiOS91Up && (section == PSEmojiCategoryActivity || section == PSEmojiCategoryObjects)) || (!isiOS91Up && (section == IDXPSEmojiCategoryActivity || section == IDXPSEmojiCategoryObjects)));
 }
 
 + (BOOL)genderEmojiBaseStringNeedVariantSelector:(NSString *)emojiString {
@@ -52,9 +52,9 @@
 }
 
 + (NSString *)getGender:(NSString *)emojiString {
-    if (containString(emojiString, FEMALE))
+    if (containsString(emojiString, FEMALE))
         return FEMALE;
-    if (containString(emojiString, MALE))
+    if (containsString(emojiString, MALE))
         return MALE;
     return nil;
 }
@@ -65,7 +65,7 @@
 
 + (NSString *)professionSkinToneEmojiBaseKey:(NSString *)emojiString {
     for (NSString *skin in [self skinModifiers]) {
-        if (containString(emojiString, skin))
+        if (containsString(emojiString, skin))
             return [emojiString stringByReplacingOccurrencesOfString:skin withString:@"" options:NSLiteralSearch range:NSMakeRange(0, emojiString.length)];
     }
     return emojiString;
@@ -87,7 +87,7 @@
 
 + (NSString *)getSkin:(NSString *)emojiString {
     for (NSString *skin in [self skinModifiers]) {
-        if (containString(emojiString, skin))
+        if (containsString(emojiString, skin))
             return skin;
     }
     return nil;
@@ -109,9 +109,9 @@
     BOOL needVariantSelector = [self genderEmojiBaseStringNeedVariantSelector:_baseFirst];
     NSString *_skin = skin ? skin : @"";
     NSString *variantSelector = _skin.length == 0 && needVariantSelector ? FE0F : @"";
-    if (containString(emojiString, FEMALE))
+    if (containsString(emojiString, FEMALE))
         return [NSString stringWithFormat:@"%@%@%@%@", _baseFirst, variantSelector, _skin, ZWJ2640FE0F];
-    else if (containString(emojiString, MALE))
+    else if (containsString(emojiString, MALE))
         return [NSString stringWithFormat:@"%@%@%@%@", _baseFirst, variantSelector, _skin, ZWJ2642FE0F];
     return nil;
 }
@@ -171,7 +171,7 @@
         if ([self emojiString:emojiString inGroup:[self SkinToneEmoji]])
             variant |= PSEmojiTypeSkin;
         if ([self emojiString:emojiString inGroup:[self GenderEmoji]]) {
-            if (containString(emojiString, ZWJ2640) || containString(emojiString, ZWJ2642))
+            if (containsString(emojiString, ZWJ2640) || containsString(emojiString, ZWJ2642))
                 variant |= PSEmojiTypeGender;
         }
         if ([[self ProfessionEmoji] containsObject:[self professionSkinToneEmojiBaseKey:emojiString]])

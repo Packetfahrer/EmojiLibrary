@@ -1,6 +1,6 @@
 #define UIFUNCTIONS_NOT_C
-#import "NSString+Internal.h"
 #import "Header.h"
+#import "PSEmojiType.h"
 
 #define ZWJ @"‍"
 #define FE0F @"️"
@@ -12,18 +12,6 @@
 #define ZWJ2642FE0F @"‍♂️"
 
 #define CATEGORIES_COUNT 9
-
-/* Emoji variants
-   XXXX: 4 binary digits of (Profession)-(Gender)-(Skin)-(Dingbat)
- */
-
-typedef NS_ENUM (NSUInteger, PSEmojiType) {
-    PSEmojiTypeProfession = 8, // 10.2+
-    PSEmojiTypeGender = 4, // 10.0+
-    PSEmojiTypeSkin = 2,
-    PSEmojiTypeDingbat = 1,
-    PSEmojiTypeRegular = 0
-};
 
 @interface PSEmojiUtilities : NSObject
 @end

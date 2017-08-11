@@ -1,4 +1,4 @@
-PACKAGE_VERSION = 1.0.8
+PACKAGE_VERSION = 1.0.9
 
 ifeq ($(SIMULATOR),1)
 	TARGET = simulator:clang:latest:6.0
@@ -16,7 +16,7 @@ libEmojiLibrary_FILES = PSEmojiUtilities.m PSEmojiUtilities+Emoji.m PSEmojiUtili
 include $(THEOS_MAKE_PATH)/library.mk
 include ../preferenceloader/locatesim.mk
 
-setup:: clean all
+setup:: all
 	@cp -v $(THEOS_OBJ_DIR)/$(LIBRARY_NAME).dylib $(THEOS)/vendor/lib/
 ifeq ($(SIMULATOR),1)
 	@sudo cp -v $(THEOS_OBJ_DIR)/$(LIBRARY_NAME).dylib $(PL_SIMULATOR_ROOT)/usr/lib/
