@@ -228,7 +228,7 @@
         NSString *skin = [self getSkin:emojiString];
         if (skin) {
             NSString *emojiWithoutSkin = [self changeEmojiSkin:emojiString toSkin:@""];
-            NSString *result = [self skinToneVariant:emojiWithoutSkin baseFirst:nil base:nil skin:skin];
+            NSString *result = [self skinToneVariant:emojiWithoutSkin skin:skin];
             HBLogDebug(@"Removing %@ from the invalid %@ -> %@ to get %@", skin, emojiString, emojiWithoutSkin, result);
             return result;
         }
@@ -241,7 +241,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         category = [[NSClassFromString(@"UIKeyboardEmojiCategory") alloc] init];
-        category.categoryType = 9;
+        category.categoryType = PSEmojiCategoryPrepopulated;
         NSArray <NSString *> *prepopulated = [self PrepopulatedEmoji];
         NSMutableArray <UIKeyboardEmoji *> *emojis = [NSMutableArray arrayWithCapacity:prepopulated.count];
         for (NSString *emojiString in prepopulated)
@@ -279,9 +279,9 @@
         UIKeyboardEmojiCategory *category = [NSClassFromString(@"UIKeyboardEmojiCategory") categoryForType:section];
         NSArray <UIKeyboardEmoji *> *emojis = category.emoji;
         cell.emoji = emojis[indexPath.item];
-        if ([PSEmojiUtilities sectionHasSkin:section]) {
+        if ((cell.emoji.variantMask & PSEmojiTypeSkin) && [PSEmojiUtilities sectionHasSkin:section]) {
             NSMutableDictionary <NSString *, NSString *> *skinPrefs = [collectionView.inputController skinToneBaseKeyPreferences];
-            if (skinPrefs && cell.emoji.variantMask & PSEmojiTypeSkin) {
+            if (skinPrefs) {
                 NSString *skinned = skinPrefs[[PSEmojiUtilities emojiBaseString:cell.emoji.emojiString]];
                 if (skinned) {
                     cell.emoji.emojiString = skinned;
