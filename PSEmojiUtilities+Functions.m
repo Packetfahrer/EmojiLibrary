@@ -34,8 +34,7 @@
 
 + (BOOL)emojiString:(NSString *)emojiString inGroup:(NSArray <NSString *> *)group {
     if (group.count) {
-        NSUInteger index = [group indexOfObject:emojiString inSortedRange:NSMakeRange(0, group.count) options:NSBinarySearchingFirstEqual
-                                usingComparator :^(id str1, id str2) {
+        NSUInteger index = [group indexOfObject:emojiString inSortedRange:NSMakeRange(0, group.count) options:NSBinarySearchingFirstEqual usingComparator:^(id str1, id str2) {
             UChar32 f1 = [self firstLongCharacter:(NSString *)str1];
             UChar32 f2 = [self firstLongCharacter:(NSString *)str2];
             if (f1 == f2)
