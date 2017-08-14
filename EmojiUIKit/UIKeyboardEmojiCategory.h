@@ -2,12 +2,12 @@
 #import "../PSEmojiCategory.h"
 
 @interface UIKeyboardEmojiCategory : NSObject
-@property PSEmojiCategory categoryType; // iOS 6+
-@property NSInteger lastViewedPage;
+@property(assign) PSEmojiCategory categoryType; // iOS 6+
+@property(assign) NSInteger lastViewedPage;
 @property(readonly) NSString *displaySymbol; // iOS 6+
 @property(readonly) NSString *displayName; // iOS 7
 @property(retain) NSMutableArray <UIKeyboardEmoji *> *emoji;
-@property NSUInteger lastVisibleFirstEmojiIndex;
+@property(assign) NSUInteger lastVisibleFirstEmojiIndex;
 @property(readonly) NSString *name;
 @property(readonly) NSString *recentDescription; // iOS 7+
 + (instancetype)categoryForType:(PSEmojiCategory)categoryType; // iOS 6+
@@ -16,7 +16,7 @@
 + (NSArray <NSNumber *> *)enabledCategoryIndexes; // iOS 9.1+
 + (NSUInteger)hasVariantsForEmoji:(NSString *)emoji; // iOS 7+
 + (NSUInteger)categoryIndexForCategoryType:(PSEmojiCategory)categoryType; // iOS 9.1+
-+ (PSEmojiCategory)categoryTypeForCategoryIndex:(NSInteger)index; // iOS 9.1+
++ (PSEmojiCategory)categoryTypeForCategoryIndex:(NSUInteger)index; // iOS 9.1+
 + (NSInteger)numberOfCategories; // iOS 6+
 + (NSString *)localizedStringForKey:(NSString *)key; // iOS 6+
 + (NSString *)displayName:(NSInteger)categoryType; // iOS 8.3+
