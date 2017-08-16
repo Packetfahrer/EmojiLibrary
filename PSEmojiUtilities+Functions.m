@@ -136,7 +136,7 @@
         return [self emojiGenderString:emojiString baseFirst:_baseFirst skin:skin];
     else if ([[self ProfessionEmoji] containsObject:_base]) {
         NSRange baseRange = [emojiString rangeOfString:_baseFirst options:NSLiteralSearch];
-        return [emojiString stringByReplacingCharactersInRange:baseRange withString:[NSString stringWithFormat:@"%@%@", _baseFirst, skin]];
+        return baseRange.location != NSNotFound ? [emojiString stringByReplacingCharactersInRange:baseRange withString:[NSString stringWithFormat:@"%@%@", _baseFirst, skin]] : nil;
     } else if ([[self DingbatVariantsEmoji] containsObject:baseFirst])
         return [NSString stringWithFormat:@"%@%@%@", baseFirst, skin, FE0F];
     return [NSString stringWithFormat:@"%@%@", _baseFirst, skin];
